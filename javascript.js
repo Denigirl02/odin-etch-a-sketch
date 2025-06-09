@@ -8,27 +8,42 @@ let cellDrawingColor = "white";
 
 let cellArray = [];
 
+populateGrid(cellWidth, cellHeight);
+
 resetBtn.addEventListener("click", function () {
 	let cells = document.querySelectorAll(".subdiv");
 	cells = Array.from(cells);
 	cells.forEach((cell) => (cell.style.backgroundColor = cellBackgroundColor));
 });
 
-for (y = 0; y < cellHeight; y++) {
-	cellArray[y] = document.createElement("div");
-	cellArray[y].setAttribute("class", "maindiv");
+changeBtn.addEventListener("click", function () {
+	let newCellSize = prompt("Please Select Grid Size (e.g. 16 for a 16x16)");
+	let cells = document.querySelectorAll(".maindiv");
+	cells = Array.from(cells);
+	cells.forEach((cell) => cell.remove());
 
-	etchContainer.appendChild(cellArray[y]);
+	cellHeight = newCellSize;
+	cellWidth = newCellSize;
+	populateGrid(cellWidth, cellHeight);
+});
 
-	for (x = 0; x < cellWidth; x++) {
-		let pixel = document.createElement("div");
-		pixel.setAttribute("class", "subdiv");
-		pixel.style.backgroundColor = cellBackgroundColor;
-		pixel.addEventListener("mouseenter", function changeColor() {
-			pixel.style.backgroundColor = cellDrawingColor;
-		});
+function populateGrid(cellWidth, cellHeight) {
+	for (y = 0; y < cellHeight; y++) {
+		cellArray[y] = document.createElement("div");
+		cellArray[y].setAttribute("class", "maindiv");
 
-		cellArray[y][x] = pixel;
-		cellArray[y].appendChild(cellArray[y][x]);
+		etchContainer.appendChild(cellArray[y]);
+
+		for (x = 0; x < cellWidth; x++) {
+			let pixel = document.createElement("div");
+			pixel.setAttribute("class", "subdiv");
+			pixel.style.backgroundColor = cellBackgroundColor;
+			pixel.addEventListener("mouseenter", function changeColor() {
+				pixel.style.backgroundColor = cellDrawingColor;
+			});
+
+			cellArray[y][x] = pixel;
+			cellArray[y].appendChild(cellArray[y][x]);
+		}
 	}
 }
