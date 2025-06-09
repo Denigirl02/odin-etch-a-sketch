@@ -2,10 +2,15 @@
 	display: flex;
 	justify-content: center;
 	gap: 16px;
-	margin-bottom: 16px;
 	margin-top: 16px;
 }
-
+#text {
+	display: flex;
+	justify-content: center;
+	margin: 0px;
+	padding: 0px;
+	font-weight: bold;
+}
 #etchDiv {
 	display: flex;
 	justify-content: center;

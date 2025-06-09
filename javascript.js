@@ -18,15 +18,27 @@ resetBtn.addEventListener("click", function () {
 
 changeBtn.addEventListener("click", function () {
 	let newCellSize = prompt("Please Select Grid Size (e.g. 16 for a 16x16)");
+	while (newCellSize > 100 || newCellSize <= 0) {
+		alert("Invalid size, please only between 1 to 100");
+		newCellSize = prompt("Please Select Grid Size (e.g. 16 for a 16x16)");
+	}
+
+	// Clear out existing Cells
 	let cells = document.querySelectorAll(".maindiv");
 	cells = Array.from(cells);
 	cells.forEach((cell) => cell.remove());
-
+	//
 	cellHeight = newCellSize;
 	cellWidth = newCellSize;
+
+	changeCellSizeText(cellWidth, cellHeight);
 	populateGrid(cellWidth, cellHeight);
 });
 
+function changeCellSizeText(cellWidth, cellHeight) {
+	const sizeText = document.querySelector("#sizeText");
+	sizeText.textContent = `Current Size: ${cellWidth} x ${cellHeight}`;
+}
 function populateGrid(cellWidth, cellHeight) {
 	for (y = 0; y < cellHeight; y++) {
 		cellArray[y] = document.createElement("div");
