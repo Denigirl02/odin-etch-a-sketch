@@ -3,7 +3,7 @@ let cellHeight = 16;
 const etchContainer = document.querySelector("#etchContainer");
 const resetBtn = document.querySelector("#reset");
 const changeBtn = document.querySelector("#change");
-let cellBackgroundColor = "red";
+let cellBackgroundColor = "white";
 let cellDrawingColor = "white";
 
 let cellArray = [];
@@ -14,6 +14,7 @@ resetBtn.addEventListener("click", function () {
 	let cells = document.querySelectorAll(".subdiv");
 	cells = Array.from(cells);
 	cells.forEach((cell) => (cell.style.backgroundColor = cellBackgroundColor));
+	cells.forEach((cell) => (cell.style.opacity = "1"));
 });
 
 changeBtn.addEventListener("click", function () {
