@@ -51,11 +51,23 @@ function populateGrid(cellWidth, cellHeight) {
 			pixel.setAttribute("class", "subdiv");
 			pixel.style.backgroundColor = cellBackgroundColor;
 			pixel.addEventListener("mouseenter", function changeColor() {
-				pixel.style.backgroundColor = cellDrawingColor;
+				pixel.style.backgroundColor = getRandomColor();
+				let currentOpacity = getComputedStyle(pixel).opacity;
+				let reducedOpacity = (currentOpacity -= 0.1);
+				pixel.style.opacity = reducedOpacity;
 			});
 
 			cellArray[y][x] = pixel;
 			cellArray[y].appendChild(cellArray[y][x]);
 		}
 	}
+}
+
+function getRandomColor() {
+	let r = Math.round(Math.random() * 255);
+	let g = Math.round(Math.random() * 255);
+	let b = Math.round(Math.random() * 255);
+
+	const rgb = `rgb(${r},${g},${b})`;
+	return rgb;
 }
